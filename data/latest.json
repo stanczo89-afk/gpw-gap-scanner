@@ -1,7 +1,46 @@
 {
-  "generated_at": null,
+  "generated_at": "2026-08-20T14:23:47.776086+02:00",
+  "timezone": "Europe/Warsaw",
   "strategy": "GPW lower-gap scanner v0.1",
-  "candidate_count": 0,
-  "stocks": [],
-  "errors": []
+  "gap_filter_pct": "< -0.5%",
+  "source": "Yahoo Finance via yfinance (free test source; delayed data possible)",
+  "candidate_count": 2,
+  "stocks": [
+    {
+      "previous_close": 445.8,
+      "open": 441.0,
+      "last": 442.6,
+      "gap_pct": -1.077,
+      "remaining_to_gap_close_pct": 0.723,
+      "volume": 3071,
+      "data_note": "Yahoo Finance / yfinance; GPW data may be delayed about 15 min",
+      "ticker": "ING.WA",
+      "name": "ING Bank Slaski"
+    },
+    {
+      "previous_close": 164.5,
+      "open": 163.66,
+      "last": 163.9,
+      "gap_pct": -0.511,
+      "remaining_to_gap_close_pct": 0.366,
+      "volume": 203972,
+      "data_note": "Yahoo Finance / yfinance; GPW data may be delayed about 15 min",
+      "ticker": "XTB.WA",
+      "name": "XTB"
+    }
+  ],
+  "errors": [
+    {
+      "ticker": "SPL.WA",
+      "reason": "no usable market data"
+    },
+    {
+      "ticker": "CCC.WA",
+      "reason": "no usable market data"
+    },
+    {
+      "ticker": "BUD.WA",
+      "reason": "no usable market data"
+    }
+  ]
 }
