@@ -1,37 +1,65 @@
 {
-  "generated_at": "2026-08-20T14:23:47.776086+02:00",
+  "version": "0.2",
+  "generated_at": "2026-08-20T15:08:38.213667+02:00",
   "timezone": "Europe/Warsaw",
-  "strategy": "GPW lower-gap scanner v0.1",
+  "snapshot_minute": "15:08",
+  "strategy": "GPW lower-gap scanner",
   "gap_filter_pct": "< -0.5%",
-  "source": "Yahoo Finance via yfinance (free test source; delayed data possible)",
-  "candidate_count": 2,
+  "min_turnover_pln": 10000,
+  "source": "Yahoo Finance via yfinance; free test source, delayed data possible",
+  "gpw_universe_url": "https://www.gpw.pl/spolki",
+  "universe_count": 41,
+  "candidate_count": 4,
   "stocks": [
     {
       "previous_close": 445.8,
       "open": 441.0,
-      "last": 442.6,
+      "last": 441.8,
       "gap_pct": -1.077,
-      "remaining_to_gap_close_pct": 0.723,
-      "volume": 3071,
-      "data_note": "Yahoo Finance / yfinance; GPW data may be delayed about 15 min",
+      "remaining_to_gap_close_pct": 0.905,
+      "volume": 3829,
+      "turnover_pln": 1693527.6,
       "ticker": "ING.WA",
       "name": "ING Bank Slaski"
     },
     {
+      "previous_close": 8.66,
+      "open": 8.6,
+      "last": 8.56,
+      "gap_pct": -0.693,
+      "remaining_to_gap_close_pct": 1.168,
+      "volume": 26513,
+      "turnover_pln": 228225.9,
+      "ticker": "AGO.WA",
+      "name": "Agora"
+    },
+    {
+      "previous_close": 5.59,
+      "open": 5.56,
+      "last": 5.61,
+      "gap_pct": -0.537,
+      "remaining_to_gap_close_pct": -0.357,
+      "volume": 23914,
+      "turnover_pln": 133321.18,
+      "ticker": "4MS.WA",
+      "name": "4MASS SPÓŁKA AKCYJNA"
+    },
+    {
       "previous_close": 164.5,
       "open": 163.66,
-      "last": 163.9,
+      "last": 163.88,
       "gap_pct": -0.511,
-      "remaining_to_gap_close_pct": 0.366,
-      "volume": 203972,
-      "data_note": "Yahoo Finance / yfinance; GPW data may be delayed about 15 min",
+      "remaining_to_gap_close_pct": 0.378,
+      "volume": 366723,
+      "turnover_pln": 60252348.23,
       "ticker": "XTB.WA",
       "name": "XTB"
     }
   ],
+  "error_count": 3,
   "errors": [
     {
-      "ticker": "SPL.WA",
+      "ticker": "BUD.WA",
       "reason": "no usable market data"
     },
     {
@@ -39,7 +67,7 @@
       "reason": "no usable market data"
     },
     {
-      "ticker": "BUD.WA",
+      "ticker": "IRL.WA",
       "reason": "no usable market data"
     }
   ]
