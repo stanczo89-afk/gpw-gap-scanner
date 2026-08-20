@@ -1,52 +1,16 @@
-# GPW Gap Scanner
+# GPW Gap Scanner v0.2
 
-Darmowy testowy skaner dolnych luk otwarcia na GPW.
+Testowy skaner dolnych luk otwarcia GPW.
 
-## Cel
+Najważniejsze zmiany:
+- próba odświeżenia uniwersum ze strony GPW `https://www.gpw.pl/spolki`,
+- `tickers.csv` pozostaje fallbackiem i miejscem korekt tickerów Yahoo,
+- filtr luki `< -0,5%`,
+- minimalny obrót 10 000 PLN,
+- pole `turnover_pln`,
+- snapshoty 09:02 / 09:07 / 09:12 czasu polskiego,
+- ręczne `Run workflow` działa o dowolnej porze,
+- harmonogram automatyczny nie ma już stałego `FORCE_RUN`.
 
-Projekt ma przez 1-2 miesiące zbierać sygnały do testu strategii gap-fill bez automatycznego składania zleceń.
-
-## Jak działa v0.1
-
-- pobiera dane przez `yfinance`,
-- porównuje dzisiejsze otwarcie z poprzednim zamknięciem,
-- filtruje dolne luki większe niż 0,5%,
-- wymaga dodatniego wolumenu,
-- zapisuje bieżący wynik do `data/latest.json`,
-- dopisuje kandydatów do `data/history.csv`,
-- GitHub Actions wykonuje snapshoty około 09:02, 09:07 i 09:12 czasu polskiego.
-
-## Ważne
-
-Darmowe dane Yahoo Finance dla GPW mogą być opóźnione około 15 minut. To źródło testowe, a nie profesjonalny feed real-time.
-
-`tickers.csv` zawiera na razie listę startową. Kolejny etap to uzupełnienie jej do pełnej listy rynku głównego GPW.
-
-## Ręczne uruchomienie
-
-```bash
-pip install -r requirements.txt
-FORCE_RUN=1 python scanner.py
-```
-
-W Windows PowerShell:
-
-```powershell
-$env:FORCE_RUN="1"
-python scanner.py
-```
-
-## Struktura
-
-```text
-gpw-gap-scanner/
-├── scanner.py
-├── requirements.txt
-├── tickers.csv
-├── data/
-│   ├── latest.json
-│   └── history.csv
-└── .github/
-    └── workflows/
-        └── scanner.yml
-```
+Uwaga: Yahoo/yfinance to darmowe źródło testowe i dane GPW mogą być opóźnione.
+Po uruchomieniu sprawdź `universe_count` w `data/latest.json`. GPW pokazuje obecnie 403 spółki na Głównym Rynku; jeśli automatyczne odkrywanie zwróci wyraźnie mniej, w v0.3 dodamy pełną obsługę paginacji listy GPW.
