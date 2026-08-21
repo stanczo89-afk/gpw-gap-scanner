@@ -25,10 +25,13 @@ GAP_THRESHOLD_PCT = -0.5
 MIN_TURNOVER_PLN = 10_000
 GPW_COMPANIES_URL = "https://www.gpw.pl/spolki"
 
-def should_run(now):
+def should_run(now: datetime) -> bool:
     if os.getenv("FORCE_RUN") == "1":
         return True
-    return now.weekday() < 5 and now.hour == 9 and now.minute in TARGET_MINUTES
+
+    # GitHub Actions może uruchomić cron kilka minut później.
+    # Akceptujemy każde uruchomienie w godzinie 09:00-09:59 czasu Warszawy.
+    return now.weekday() < 5 and now.hour == 9
 
 def load_static_tickers():
     out = {}
