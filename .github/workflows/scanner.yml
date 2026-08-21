@@ -2,9 +2,14 @@ name: GPW Gap Scanner
 
 "on":
   workflow_dispatch: {}
-  schedule:
-    - cron: "2,7,12 7 * * 1-5"
-    - cron: "2,7,12 8 * * 1-5"
+schedule:
+  # czas letni w Polsce: UTC+2
+  - cron: "59 6 * * 1-5"
+  - cron: "2,7,12 7 * * 1-5"
+
+  # czas zimowy w Polsce: UTC+1
+  - cron: "59 7 * * 1-5"
+  - cron: "2,7,12 8 * * 1-5"
 
 permissions:
   contents: write
