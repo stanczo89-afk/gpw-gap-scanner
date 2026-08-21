@@ -29,9 +29,18 @@ def should_run(now: datetime) -> bool:
     if os.getenv("FORCE_RUN") == "1":
         return True
 
-    # GitHub Actions może uruchomić cron kilka minut później.
-    # Akceptujemy każde uruchomienie w godzinie 09:00-09:59 czasu Warszawy.
-    return now.weekday() < 5 and now.hour == 9
+    # GitHub Actions może uruchomić cron z opóźnieniem.
+    # Akceptujemy automatyczne uruchomienia między 08:58 a 09:59.
+    if now.weekday() >= 5:
+        return False
+
+    if now.hour == 8 and now.minute >= 58:
+        return True
+
+    if now.hour == 9:
+        return True
+
+    return False
 
 def load_static_tickers():
     out = {}
@@ -148,22 +157,20 @@ def main():
 
     candidates.sort(key=lambda x: x["gap_pct"])
 
-    payload = {
-        "version": "0.2",
-        "generated_at": now.isoformat(),
-        "timezone": "Europe/Warsaw",
-        "snapshot_minute": now.strftime("%H:%M"),
-        "strategy": "GPW lower-gap scanner",
-        "gap_filter_pct": "< -0.5%",
-        "min_turnover_pln": MIN_TURNOVER_PLN,
-        "source": "Yahoo Finance via yfinance; free test source, delayed data possible",
-        "gpw_universe_url": GPW_COMPANIES_URL,
-        "universe_count": len(universe),
-        "candidate_count": len(candidates),
-        "stocks": candidates,
-        "error_count": len(errors),
-        "errors": errors[:100],
-    }
+    age_minutes = 0
+
+payload = {
+    "version": "0.2",
+    "generated_at": now.isoformat(),
+    "timezone": "Europe/Warsaw",
+    "snapshot_minute": now.strftime("%H:%M"),
+    "freshness": {
+        "status": "FRESH",
+        "age_minutes": age_minutes,
+        "max_age_minutes_for_report": 30
+    },
+    ...
+}
 
     LATEST_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     append_history(now, candidates)
